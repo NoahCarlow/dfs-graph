@@ -203,3 +203,23 @@ void LinkedList::printList()
         pointer = pointer->next;
     }
 }
+
+// gets the size of horizontal array
+int LinkedList::sizeOfHorizontal()
+{
+    int count = 0; // assume all nodes have one connection
+
+    Project *pointer = new Project;
+    pointer = head;
+    // traverses through all nodes in the linked list
+    if (pointer == NULL)
+    {
+        return count;
+    }
+    while (pointer != NULL)
+    {
+        count++;
+        pointer = pointer->next;
+    }
+    return count;
+}

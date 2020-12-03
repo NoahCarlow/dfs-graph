@@ -36,9 +36,82 @@ void Graph::addEdge(string nodeOne, string nodeTwo, int weight)
 }
 
 // TODO
-void Graph::shortestPath(Graph thisGraph)
+void Graph::shortestPath(Graph thisGraph, int size)
 {
+    color = new string[size]; // holds the color of the nodes
+    pi = new string[size]; // holds the parents of the nodes
+    darray = new int[size];
+    farray = new int[size];
+
+    for (int i = 0; i < size; i++)
+    {
+        color[i] = "white";
+        pi[i] = "none";
+        //std::cout << thisGraph.adjacencyListProjects[i];
+    }
+    time = 0; // keeps track of DFS time
+
+    for (int i = 0; i < size; i++)
+    {
+        if (color[i].compare("white") == 0)
+        {
+            DFSVISIT(thisGraph, i);
+        }
+    }
+}
+
+void Graph::DFSVISIT(Graph thisGraph, int index)
+{
+    color[index] = "gray";
+    time++; darray[index] = time;
+
+    vector<string> names = adjacencyList[index].getProjName(); // grabs all names in horizonal list
+
+    for (int i = 0; i < thisGraph.adjacencyList[index].sizeOfHorizontal(); i++)
+    {
+        string horizontalName = names[i];
+        //std::cout << horizontalName;
+        int indexOfHorizontal = search(horizontalName);
+        //std::cout << indexOfHorizontal;
+        //std::cout<<std::endl;
+        if (color[indexOfHorizontal].compare("white") == 0)
+        {
+            pi[indexOfHorizontal] = thisGraph.adjacencyListProjects[index];
+            DFSVISIT(thisGraph, indexOfHorizontal);
+        }
+    }
+    color[index] = "black";
+    time++;
+    farray[index] = time;
+}
+
+void Graph::printDFS()
+{
+    std::cout << "DFS being performed..." << std::endl;
+    std::cout<<endl;
+
+    std::cout << "The array pi content:" << std::endl;
+    std::cout<<endl;
+    for(int i = 0; i < graphSize; i++)
+    {
+        std::cout << "pi[" << adjacencyListProjects[i] << "]" << " = " << pi[i] << std::endl;
+    }
+    std::cout<<endl;
     
+    std::cout << "The array d content:" << std::endl;
+    std::cout<<endl;
+    for(int i = 0; i < graphSize; i++)
+    {
+        std::cout << "d[" << adjacencyListProjects[i] << "]" << " = " << darray[i] << std::endl;
+    }
+    std::cout<<endl;
+
+    std::cout << "The array f content:" << std::endl;
+    std::cout<<endl;
+    for(int i = 0; i < graphSize; i++)
+    {
+        std::cout << "f[" << adjacencyListProjects[i] << "]"<< " = " << farray[i] << std::endl;
+    }
 }
 
 //Searches through the linked list and returns the index at which a project is found

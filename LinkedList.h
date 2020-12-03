@@ -39,6 +39,7 @@ class LinkedList
     vector<string> getProjName();
     vector<string> getProjWeight();
     void printList();
+    int sizeOfHorizontal();
 };
 
 #endif

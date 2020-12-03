@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include "LinkedList.h"
-#include "MinHeap.h"
 using namespace std;
 
 class Graph
@@ -12,7 +11,11 @@ class Graph
     public:
         vector<string> adjacencyListProjects;
         LinkedList* adjacencyList;
-        MinHeap* myHeap;
+        string* color;
+        string* pi;
+        int* darray;
+        int* farray;
+        int time = 0;
         int graphSize = 0;
         // add node into our adjency list
         void addNode(string nodeOne);
@@ -21,13 +24,17 @@ class Graph
         void addEdge(string nodeOne, string nodeTwo, int weight);
 
         // shortest path algorithm using Dijkstra's method
-        void shortestPath(Graph thisGraph);
+        void shortestPath(Graph thisGraph, int size);
+
+        void DFSVISIT(Graph thisGraph, int index);
 
         // initialize our adjacency list to our node size
         void createAdjacencyList(int size);
 
         // searches through the linked list and returns the index at which a project is found
         int search(string projName);
+
+        void printDFS();
 };
 
 #endif 
