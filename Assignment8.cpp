@@ -66,6 +66,6 @@ int main()
         std::cout << std::endl;
     }
 
-    myGraph->shortestPath(*myGraph, numberOfNodes);
-    myGraph->printDFS();
+    myGraph->depthFirstSearch(*myGraph, numberOfNodes);
+    myGraph->printGraph();
 }

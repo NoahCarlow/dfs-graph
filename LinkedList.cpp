@@ -1,3 +1,7 @@
+// Assignment #8
+// Name: Noah Carlow
+// ASU Email Address: ncarlow2@asu.edu
+
 #include <iostream>
 #include <string>
 #include "LinkedList.h"

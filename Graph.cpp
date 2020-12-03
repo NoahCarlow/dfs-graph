@@ -1,3 +1,7 @@
+// Assignment #8
+// Name: Noah Carlow
+// ASU Email Address: ncarlow2@asu.edu
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -35,8 +39,8 @@ void Graph::addEdge(string nodeOne, string nodeTwo, int weight)
     adjacencyList[index].addProject(nodeTwo, weight);
 }
 
-// TODO
-void Graph::shortestPath(Graph thisGraph, int size)
+// perform a DFS on our adjacency list that the user inputed
+void Graph::depthFirstSearch(Graph thisGraph, int size)
 {
     color = new string[size]; // holds the color of the nodes
     pi = new string[size]; // holds the parents of the nodes
@@ -60,6 +64,7 @@ void Graph::shortestPath(Graph thisGraph, int size)
     }
 }
 
+// visit each node in the horizonal array and gather data
 void Graph::DFSVISIT(Graph thisGraph, int index)
 {
     color[index] = "gray";
@@ -69,15 +74,15 @@ void Graph::DFSVISIT(Graph thisGraph, int index)
 
     for (int i = 0; i < thisGraph.adjacencyList[index].sizeOfHorizontal(); i++)
     {
-        string horizontalName = names[i];
+        string horizontalName = names[i]; // stores the string of the node in the horizontal array
         //std::cout << horizontalName;
-        int indexOfHorizontal = search(horizontalName);
+        int indexOfHorizontal = search(horizontalName); // searches for that string in the vertical array
         //std::cout << indexOfHorizontal;
         //std::cout<<std::endl;
         if (color[indexOfHorizontal].compare("white") == 0)
         {
-            pi[indexOfHorizontal] = thisGraph.adjacencyListProjects[index];
-            DFSVISIT(thisGraph, indexOfHorizontal);
+            pi[indexOfHorizontal] = thisGraph.adjacencyListProjects[index]; // set the parent in the pi array
+            DFSVISIT(thisGraph, indexOfHorizontal); // recursion call to visit the rest of the nodes
         }
     }
     color[index] = "black";
@@ -85,7 +90,8 @@ void Graph::DFSVISIT(Graph thisGraph, int index)
     farray[index] = time;
 }
 
-void Graph::printDFS()
+// print out all of the array content after DFS
+void Graph::printGraph()
 {
     std::cout << "DFS being performed..." << std::endl;
     std::cout<<endl;

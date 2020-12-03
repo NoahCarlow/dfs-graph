@@ -1,3 +1,7 @@
+// Assignment #8
+// Name: Noah Carlow
+// ASU Email Address: ncarlow2@asu.edu
+
 #ifndef GRAPH_H
 #define GRAPH_H
 
@@ -24,7 +28,7 @@ class Graph
         void addEdge(string nodeOne, string nodeTwo, int weight);
 
         // shortest path algorithm using Dijkstra's method
-        void shortestPath(Graph thisGraph, int size);
+        void depthFirstSearch(Graph thisGraph, int size);
 
         void DFSVISIT(Graph thisGraph, int index);
 
@@ -34,7 +38,7 @@ class Graph
         // searches through the linked list and returns the index at which a project is found
         int search(string projName);
 
-        void printDFS();
+        void printGraph(); // prints the graph
 };
 
 #endif 

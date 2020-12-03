@@ -1,3 +1,7 @@
+// Assignment #8
+// Name: Noah Carlow
+// ASU Email Address: ncarlow2@asu.edu
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
